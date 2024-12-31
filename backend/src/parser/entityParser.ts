@@ -55,7 +55,7 @@ export function parseTypeORMEntities(directoryPath: string): Entity[] {
             const target = relationDecorator.getArguments()[0]?.getText() || "Unknown";
             entity.relationships.push({
               type: relation,
-              target: target.replace(/[()"]/g, ""),
+              target : target.replace(/.*=>\s*/, ""),
               field: property.getName(),
             });
           }

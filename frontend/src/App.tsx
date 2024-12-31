@@ -1,10 +1,19 @@
-import { useEffect, useState } from "react";
-import ReactFlow, { Node, Edge } from "react-flow-renderer";
+import { useEffect, useCallback } from "react";
+import {
+  ReactFlow,
+  MiniMap,
+  Controls,
+  Background,
+  useNodesState,
+  useEdgesState,
+  addEdge,
+  } from '@xyflow/react';
+import '@xyflow/react/dist/style.css';
 import axios from "axios";
 
 const App = () => {
-  const [nodes, setNodes] = useState<Node[]>([]);
-  const [edges, setEdges] = useState<Edge[]>([]);
+const [nodes, setNodes, onNodesChange] = useNodesState([]);
+const [edges, setEdges, onEdgesChange] = useEdgesState([]);
 
   useEffect(() => {
     axios.get("http://localhost:3001/parse").then((response) => {
@@ -30,10 +39,20 @@ const App = () => {
     });
   }, []);
 
+
   return (
     <div style={{ height: "100vh", width: "100vw" }}>
-      <ReactFlow nodes={nodes} edges={edges} />
-      <p>helloooo</p>
+    <ReactFlow
+      nodes={nodes}
+      edges={edges}
+      onNodesChange={onNodesChange}
+      onEdgesChange={onEdgesChange}
+      // onConnect={onConnect}
+    >
+      <MiniMap />
+      <Controls />
+      <Background />
+    </ReactFlow>
     </div>
   );
 };
