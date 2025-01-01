@@ -19,7 +19,7 @@ interface Entity {
 
 export function parseTypeORMEntities(directoryPath: string): Entity[] {
   const project = new Project();
-  project.addSourceFilesAtPaths(`${directoryPath}/**/*.ts`);
+  project.addSourceFilesAtPaths(`${directoryPath}/**/*`);
   const sourceFiles = project.getSourceFiles();
 
   const entities: Entity[] = [];
