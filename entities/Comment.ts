@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, ManyToMany, JoinTable } from 'typeorm';
 import { User } from './User';
-import { Comment } from './Comment';
+
 import { Tag } from './Tag';
 
 @Entity()
