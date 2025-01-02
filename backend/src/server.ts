@@ -6,7 +6,7 @@ import path from "path";
 import fs from "fs";
 import removeFilesInFolder from "./removeFilesInFolder";
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 4000;
 app.use(cors());
 
 

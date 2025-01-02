@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   ReactFlow,
   MiniMap,
@@ -15,6 +15,9 @@ const App = () => {
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [loading, setLoading] = useState(false);
 
+    const BACKEND_URL = import.meta.env.BACKEND_URL; 
+    console.log("this is backend url", BACKEND_URL);
+
       const handleFolderUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
         if (!files) return;
@@ -24,13 +27,15 @@ const App = () => {
 
         setLoading(true);
         try {
-          const response = await axios.post("http://localhost:3001/upload-folder", formData, {
+          
+
+          const response = await axios.post(`${BACKEND_URL}/upload-folder`, formData, {
             headers: { "Content-Type": "multipart/form-data" },
           });
-        
+
           console.log("Response data:", response.data); // Add this log
           const data = response.data;
-        
+
           const parsedNodes = data.map((entity: any, index: number) => ({
             id: entity.name,
             position: { x: index * 200, y: 50 },
