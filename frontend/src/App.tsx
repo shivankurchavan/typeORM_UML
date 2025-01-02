@@ -15,8 +15,8 @@ const App = () => {
     const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [loading, setLoading] = useState(false);
 
-    const BACKEND_URL = import.meta.env.BACKEND_URL; 
-    console.log("this is backend url", BACKEND_URL);
+    const BACKEND_URL = import.meta.env.VITE_BACKEND_URL; 
+    console.log(BACKEND_URL);
 
       const handleFolderUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
@@ -48,7 +48,6 @@ const App = () => {
               source: entity.name,
               target: rel.target,
               label: rel.type,
-              type:"simplebezier",
               animated: "true",
             }))
           );
