@@ -16,7 +16,6 @@ const App = () => {
     const [loading, setLoading] = useState(false);
 
     const BACKEND_URL = import.meta.env.VITE_BACKEND_URL; 
-    console.log(BACKEND_URL);
 
       const handleFolderUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
@@ -51,9 +50,6 @@ const App = () => {
               animated: "true",
             }))
           );
-        
-          console.log("Parsed nodes:", parsedNodes); // Add this log
-          console.log("Parsed edges:", parsedEdges); // Add this log
         
           setNodes(parsedNodes);
           setEdges(parsedEdges);
